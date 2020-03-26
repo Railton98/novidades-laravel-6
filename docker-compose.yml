@@ -4,27 +4,27 @@ version: "3"
 # Named volumes
 volumes:
   # MySQL Data
-  passport-mysql-data:
+  newsl6-mysql-data:
     driver: local
 
 services:
   # MySQL (5.7)
   db:
     image: mysql:5.7
-    container_name: passport-mysql
+    container_name: newsl6-mysql
     volumes:
-      - passport-mysql-data:/var/lib/mysql
+      - newsl6-mysql-data:/var/lib/mysql
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_DATABASE=passport
-      - MYSQL_USER=passport
-      - MYSQL_PASSWORD=passport
-      - MYSQL_ROOT_PASSWORD=passport
+      - MYSQL_DATABASE=newsl6
+      - MYSQL_USER=newsl6
+      - MYSQL_PASSWORD=newsl6
+      - MYSQL_ROOT_PASSWORD=newsl6
   # PHP (with Nginx)
   app:
-    image: ambientum/php:7.2-nginx
-    container_name: passport-app
+    image: ambientum/php:7.3-nginx
+    container_name: newsl6-app
     depends_on:
       - db
     volumes:
@@ -36,7 +36,7 @@ services:
   # PHPMYADMIN
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: passport-phpmyadmin
+    container_name: newsl6-phpmyadmin
     depends_on:
       - db
     links:
@@ -45,6 +45,6 @@ services:
       - "81:80"
     environment:
       - PMA_HOST=db
-      - MYSQL_USER=passport
-      - MYSQL_PASSWORD=passport
-      - MYSQL_ROOT_PASSWORD=passport
+      - MYSQL_USER=newsl6
+      - MYSQL_PASSWORD=newsl6
+      - MYSQL_ROOT_PASSWORD=newsl6
