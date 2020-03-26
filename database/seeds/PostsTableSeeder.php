@@ -1,7 +1,7 @@
 <?php
 
-use App\Post;
-use App\PostImage;
+use App\Models\Post;
+use App\Models\PostImage;
 use Illuminate\Database\Seeder;
 
 class PostsTableSeeder extends Seeder
@@ -14,7 +14,7 @@ class PostsTableSeeder extends Seeder
     public function run()
     {
         factory(Post::class, 10000)->create()->each(function($post){
-            $post->post_images()->save(
+            $post->postImages()->save(
                 factory(PostImage::class)->make()
             );
         });
